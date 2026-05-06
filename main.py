@@ -11,8 +11,7 @@ def main() -> None:
         'Orange Juice',
     ]
 
-    BEVERAGES = [Beverage(name=name, price=100 * i, quantity=5 * i)
-                 for i, name in enumerate(BEVERAGE_NAMES, start=1)]
+    BEVERAGES = [Beverage(name=name, price=100 * i, quantity=5 * i) for i, name in enumerate(BEVERAGE_NAMES, start=1)]
 
     Machine(BEVERAGES).begin()
 

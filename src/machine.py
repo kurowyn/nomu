@@ -6,10 +6,8 @@ class Machine:
     def __init__(self, beverages: list[Beverage]) -> None:
         self.purchases = []
         self.beverage_names = [beverage.name for beverage in beverages]
-        self.beverage_mapping = {name: beverage for name,
-                                 beverage in zip(self.beverage_names, beverages)}
-        self.enumerated_beverage_names = {
-            i: name for i, name in enumerate(self.beverage_names, start=1)}
+        self.beverage_mapping = {name: beverage for name, beverage in zip(self.beverage_names, beverages)}
+        self.enumerated_beverage_names = {i: name for i, name in enumerate(self.beverage_names, start=1)}
 
     def begin(self):
         """Begin machine loop."""
@@ -33,12 +31,10 @@ class Machine:
         """
         # Search by number
         if name.isnumeric() and int(name) in self.enumerated_beverage_names:
-            beverage = self.beverage_mapping[self.enumerated_beverage_names[int(
-                name)]]
+            beverage = self.beverage_mapping[self.enumerated_beverage_names[int(name)]]
         # Search by closest match
         else:
-            matches = [beverage for beverage in self.beverage_names if beverage.lower(
-            ).startswith(name.lower())]
+            matches = [beverage for beverage in self.beverage_names if beverage.lower().startswith(name.lower())]
 
             if not matches:
                 return 'No such beverage.'
@@ -103,8 +99,7 @@ class Machine:
         accumulated_pay = 0
 
         while True:
-            pay = graceful_input(
-                'Insert money (type c to cancel): ', exit_message='Purchase aborted')
+            pay = graceful_input('Insert money (type c to cancel): ', exit_message='Purchase aborted')
 
             if pay == 'c':
                 print(f'No purchase. Returning money ({accumulated_pay}).')
@@ -119,14 +114,12 @@ class Machine:
             change = accumulated_pay - item.price
 
             if change >= 0:
-                choice = graceful_input(
-                    f"Purchase ready to be finalized, with change {change}. Type c to cancel, or press enter to proceed: ", exit_message='Purchase aborted.')
+                choice = graceful_input(f"Purchase ready to be finalized, with change {change}. Type c to cancel, or press enter to proceed: ", exit_message='Purchase aborted.')
                 if choice == 'c':
                     print(f'No purchase. Returning money ({accumulated_pay}).')
                     return accumulated_pay
 
-                print(
-                    f'Purchased {item.name} at the price of {item.price} with change of {change}')
+                print(f'Purchased {item.name} at the price of {item.price} with change of {change}')
 
                 updated_quantity = self.beverage_mapping[item.name].quantity - 1
 
@@ -136,5 +129,4 @@ class Machine:
                 return Purchase(item=item, change=change)
 
             if change < 0:
-                print(
-                    f'Not enough money inserted yet. (remaining: {abs(change)})')
+                print(f'Not enough money inserted yet. (remaining: {abs(change)})')
