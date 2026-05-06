@@ -7,10 +7,9 @@ import pytest
 def machine():
     """Provides a fresh Machine instance for each test."""
     beverages = [
-        # Index 1: Price 100, Qty 5 (due to __init__ logic)
         Beverage("Apple Juice", 100, 5),
-        Beverage("Orange Juice", 500, 10),  # Index 2: Price 200, Qty 10
-        Beverage("Grape Soda", 300, 6)    # Index 3: Price 300, Qty 15
+        Beverage("Orange Juice", 500, 10),  
+        Beverage("Grape Soda", 300, 6)    
     ]
     return Machine(beverages)
 
