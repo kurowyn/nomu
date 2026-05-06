@@ -1,4 +1,5 @@
 def graceful_input(prompt: str, exit_message: str = '') -> str:
+    """Wrapper input function that handles interrupts gracefully."""
     try:
         return input(prompt)
     except KeyboardInterrupt:

@@ -12,6 +12,7 @@ class Machine:
             i: name for i, name in enumerate(self.beverage_names, start=1)}
 
     def begin(self):
+        """Begin machine loop."""
         while True:
             item = self.select_beverage_menu()
             purchase = self.pay_for_item(item)
@@ -19,6 +20,16 @@ class Machine:
                 self.purchases.append(purchase)
 
     def search_beverage(self, name: str) -> PurchaseItem | str:
+        """Searches for a beverage by either name or beverage's number.
+        Supports case insensitive, short form search.
+
+        For example, if the list of beverages is ['Orange Juice', 'Apple Juice'], then 'ora'
+        'oRA', and 'Orange Juice' are valid matches.
+
+        However, if you have ['Apple Juice', 'Apple Cider'], then 'app' is ambiguous.
+
+        Returns: PurchaseItem, or a string containing an error message to be displayed.
+        """
         # Search by number
         if name.isnumeric() and int(name) in self.enumerated_beverage_names:
             beverage = self.beverage_mapping[self.enumerated_beverage_names[int(
@@ -58,6 +69,10 @@ class Machine:
         print("=" * (index_width + name_width + price_width + quantity_width) + "\n")
 
     def select_beverage_menu(self) -> PurchaseItem:
+        """Beverage menu for the user to select which beverage to purchase.
+
+        Returns: PurchaseItem
+        """
         while True:
             self.display_menu()
 
@@ -71,6 +86,11 @@ class Machine:
                 print(result)
 
     def pay_for_item(self, item: PurchaseItem) -> Purchase | int:
+        """Checkout menu for the user to insert money for the beverage purchase.
+
+        Returns: Purchase
+        """
+
         name_width, price_width = 20, 10
 
         print('PURCHASE')
