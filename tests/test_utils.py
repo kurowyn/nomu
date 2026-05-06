@@ -1,3 +1,5 @@
+"""Tests graceful_input."""
+
 from src.utils import graceful_input
 import pytest
 

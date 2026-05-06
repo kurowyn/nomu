@@ -1,3 +1,5 @@
+"""Tests intialization for each of the models."""
+
 import pytest
 from src.models import Beverage, PurchaseItem, Purchase
 

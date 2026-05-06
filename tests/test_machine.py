@@ -1,3 +1,5 @@
+"""Tests machine logic. Has the most amount of tests."""
+
 from src.machine import Machine
 from src.models import Beverage, Purchase, PurchaseItem
 import pytest
