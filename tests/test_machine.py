@@ -6,7 +6,7 @@ import pytest
 from unittest.mock import MagicMock
 
 
-def test_machine_with_non_empty_list():
+def test_machine_with_non_empty_list(monkeypatch):
     beverages = [
         Beverage("Apple Juice", 100, 5),
         Beverage("Orange Juice", 500, 10),
@@ -39,6 +39,8 @@ def test_machine_with_empty_list():
     assert not machine.purchases
     assert not machine.beverage_mapping
     assert not machine.enumerated_beverage_names
+
+    assert not machine.begin() 
 
 
 @pytest.fixture

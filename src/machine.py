@@ -18,6 +18,7 @@ class Machine:
             purchase = self.pay_for_item(item)
             if isinstance(purchase, Purchase):
                 self.purchases.append(purchase)
+        return False
 
     def search_beverage(self, name: str) -> PurchaseItem | str:
         """Searches for a beverage by either name or beverage's number.
