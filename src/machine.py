@@ -30,9 +30,14 @@ class Machine:
         Returns: PurchaseItem, or a string containing an error message to be displayed.
         """
         # Search by number
-        if name.isnumeric() and int(name) in self.enumerated_beverage_names:
-            beverage = self.beverage_mapping[self.enumerated_beverage_names[int(name)]]
+        # O(1)
+        if name.isnumeric():
+            beverage = self.beverage_mapping.get(self.enumerated_beverage_names[int(name)])
+            if not beverage:
+                return 'No such beverage.'
         # Search by closest match
+        # O(n). 
+        # More efficient is a little tricky.
         else:
             matches = [beverage for beverage in self.beverage_names if beverage.lower().startswith(name.lower())]
 

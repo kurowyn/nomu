@@ -53,7 +53,7 @@ def machine():
     ]
     return Machine(beverages)
 
-# --- Search Logic Tests ---
+# Search logic tests 
 
 
 def test_search_by_number(machine):
@@ -93,7 +93,7 @@ def test_search_out_of_stock(machine):
     result = machine.search_beverage("Apple Juice")
     assert result == 'Beverage out of stock.'
 
-# --- Payment Logic Tests ---
+# Payment logic tests 
 
 
 def test_pay_for_item_success_exact_change(machine, monkeypatch):
@@ -177,7 +177,7 @@ def test_select_beverage_menu_retry_on_invalid(machine, monkeypatch):
     item = machine.select_beverage_menu()
     assert item.name == "Apple Juice"
 
-# --- Main App Loop Test ---
+# Main app loop test 
 
 
 def test_begin_loop_termination(machine, monkeypatch):
