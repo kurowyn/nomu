@@ -13,7 +13,7 @@ class Machine:
 
     def begin(self):
         """Begin machine loop."""
-        while True:
+        while self.beverage_names:
             item = self.select_beverage_menu()
             purchase = self.pay_for_item(item)
             if isinstance(purchase, Purchase):

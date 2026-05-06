@@ -3,6 +3,42 @@
 from src.machine import Machine
 from src.models import Beverage, Purchase, PurchaseItem
 import pytest
+from unittest.mock import MagicMock
+
+
+def test_machine_with_non_empty_list():
+    beverages = [
+        Beverage("Apple Juice", 100, 5),
+        Beverage("Orange Juice", 500, 10),
+        Beverage("Grape Soda", 300, 6)
+    ]
+
+    machine = Machine(beverages)
+
+    assert not machine.purchases
+
+    assert machine.beverage_names[0] == 'Apple Juice'
+    assert machine.beverage_names[1] == 'Orange Juice'
+    assert machine.beverage_names[2] == 'Grape Soda'
+
+    assert machine.beverage_mapping[beverages[0].name] == beverages[0]
+    assert machine.beverage_mapping[beverages[1].name] == beverages[1]
+    assert machine.beverage_mapping[beverages[2].name] == beverages[2]
+
+    assert machine.enumerated_beverage_names[1] == beverages[0].name
+    assert machine.enumerated_beverage_names[2] == beverages[1].name
+    assert machine.enumerated_beverage_names[3] == beverages[2].name
+
+
+def test_machine_with_empty_list():
+    beverages = []
+
+    machine = Machine(beverages)
+
+    assert not machine.beverage_names
+    assert not machine.purchases
+    assert not machine.beverage_mapping
+    assert not machine.enumerated_beverage_names
 
 
 @pytest.fixture
@@ -10,8 +46,8 @@ def machine():
     """Provides a fresh Machine instance for each test."""
     beverages = [
         Beverage("Apple Juice", 100, 5),
-        Beverage("Orange Juice", 500, 10),  
-        Beverage("Grape Soda", 300, 6)    
+        Beverage("Orange Juice", 500, 10),
+        Beverage("Grape Soda", 300, 6)
     ]
     return Machine(beverages)
 
