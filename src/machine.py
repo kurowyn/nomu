@@ -44,18 +44,18 @@ class Machine:
     def display_menu(self) -> None:
         """Displays all beverages in a formatted table with column headers."""
         # Define column widths
-        idx_w, name_w, price_w, qty_w = 4, 20, 10, 10
+        index_width, name_width, price_width, quantity_width = 4, 20, 10, 10
 
-        print("\n" + "=" * (idx_w + name_w + price_w + qty_w))
+        print("\n" + "=" * (index_width + name_width + price_width + quantity_width))
         # Header row
-        print(f"{'#':<{idx_w}} {'NAME':<{name_w}} {'PRICE':<{price_w}} {'QTY':<{qty_w}}")
-        print("-" * (idx_w + name_w + price_w + qty_w))
+        print(f"{'#':<{index_width}} {'NAME':<{name_width}} {'PRICE':<{price_width}} {'QTY':<{quantity_width}}")
+        print("-" * (index_width + name_width + price_width + quantity_width))
 
         # Data rows
         for number, name in self.enumerated_beverage_names.items():
-            bev = self.beverage_mapping[name]
-            print(f"{number:<{idx_w}} {name:<{name_w}} {bev.price:<{price_w}} {bev.quantity:<{qty_w}}")
-        print("=" * (idx_w + name_w + price_w + qty_w) + "\n")
+            b = self.beverage_mapping[name]
+            print(f"{number:<{index_width}} {name:<{name_width}} {b.price:<{price_width}} {b.quantity:<{quantity_width}}")
+        print("=" * (index_width + name_width + price_width + quantity_width) + "\n")
 
     def select_beverage_menu(self) -> PurchaseItem:
         while True:
@@ -71,13 +71,13 @@ class Machine:
                 print(result)
 
     def pay_for_item(self, item: PurchaseItem) -> Purchase | int:
-        name_w, price_w = 20, 10
+        name_width, price_width = 20, 10
 
         print('PURCHASE')
-        print("=" * (name_w + price_w))
-        print(f"{'NAME':<{name_w}} {'PRICE':<{price_w}}")
-        print(f"{item.name:<{name_w}} {item.price:<{price_w}}")
-        print("-" * (name_w + price_w))
+        print("=" * (name_width + price_width))
+        print(f"{'NAME':<{name_width}} {'PRICE':<{price_width}}")
+        print(f"{item.name:<{name_width}} {item.price:<{price_width}}")
+        print("-" * (name_width + price_width))
 
         accumulated_pay = 0
 
